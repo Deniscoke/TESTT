@@ -1,0 +1,20 @@
+name: Verify repository
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  baseline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check required documentation
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s README.md
+          test -s docs/CLOUD_SESSION_BRIEF.md
+          echo "Cloud Lab baseline verified"
