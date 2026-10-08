@@ -1,0 +1,131 @@
+# Shared detector fixtures (copied from the Lua tests in tests/test_*.lua).
+# Char codes: '.' transparent, '0' alpha 0 with non-zero key,
+# 'A'-'Z' opaque, 'a'-'z' alpha 128 with the uppercase key.
+# Cases are separated by blank lines; the first line is "# name".
+
+# orphan: different colour inside fill
+AAA
+ABA
+AAA
+
+# orphan: diagonal same colour
+B..
+.B.
+..A
+
+# orphan: 4 vs 8 neighbourhood
+B.
+.B
+
+# orphan: transparent hole
+AAA
+A.A
+AAA
+
+# orphan: dirty transparent
+AAA
+A0A
+AAA
+
+# orphan: isolated pixel
+...
+.A.
+...
+
+# orphan: surrounded by other colour
+BBB
+BAB
+BBB
+
+# orphan: borders
+BAAAB
+AAAAA
+BAAAB
+
+# orphan: semi-transparent same key
+AAA
+AaA
+AAA
+
+# empty: fully transparent
+...
+...
+
+# single pixel
+A
+
+# double: stair-step
+AA.
+.AA
+
+# double: longer line
+AAAA...
+...AAAA
+
+# double: clean stair
+AA..
+..AA
+
+# double: clean diagonal
+A..
+.A.
+..A
+
+# double: vertical-ish
+A.
+A.
+AA
+.A
+.A
+
+# double: outline box
+AAAA
+A..A
+A..A
+AAAA
+
+# double: filled square
+AAA
+AAA
+AAA
+
+# double: filled triangle
+AAA
+AA.
+A..
+
+# double: tiny L
+A.
+AA
+
+# double: different colours
+AB.
+.AA
+
+# double: transparent
+00.
+.00
+
+# double: border
+AA
+.A
+
+# partial alpha: mixed
+AaA
+.b.
+
+# immutability fixture
+AAB
+aA.
+0BB
+
+# run_all fixture
+ABA
+Aa.
+AA.
+
+# marker-layer art fixture
+AAA.
+ABA.
+AAA.
+..aa

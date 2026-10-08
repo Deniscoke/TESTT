@@ -49,3 +49,32 @@ jobs:
           name: pixel-proofreader-p0
           path: dist/
           retention-days: 14
+
+  libresprite-diagnostic:
+    # Read-only JavaScript diagnostic for LibreSprite 1.3. LibreSprite is never
+    # downloaded or run here; Lua is installed only as the reference for parity tests.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install stock Lua 5.4 (reference implementation)
+        run: sudo apt-get update -q && sudo apt-get install -y -q lua5.4
+      - name: Build single-file script (twice, compare)
+        shell: bash
+        run: |
+          set -euo pipefail
+          tools/build_libresprite.sh "$RUNNER_TEMP/a"
+          tools/build_libresprite.sh
+          cmp "$RUNNER_TEMP/a/PixelProofreader-Diagnostic.js" dist/libresprite/PixelProofreader-Diagnostic.js
+      - name: JavaScript syntax check
+        run: |
+          node --check src/libresprite/core.js
+          node --check src/libresprite/main.js
+          node --check dist/libresprite/PixelProofreader-Diagnostic.js
+      - name: JavaScript tests (parity with Lua + read-only smoke tests)
+        run: node tests/js/run.js
+      - name: Upload temporary build artifact (not a release)
+        uses: actions/upload-artifact@v4
+        with:
+          name: pixel-proofreader-libresprite-diagnostic
+          path: dist/libresprite/
+          retention-days: 14
