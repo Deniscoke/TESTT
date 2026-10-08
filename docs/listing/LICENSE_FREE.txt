@@ -1,0 +1,20 @@
+PIXEL PROOFREADER FREE - LICENSE (DRAFT FOR OWNER REVIEW, NOT LEGAL ADVICE)
+
+Copyright (c) 2026 the Pixel Proofreader author. All rights reserved except as
+granted below.
+
+1. You may use Pixel Proofreader Free at no cost, for personal and commercial
+   projects, on any number of devices.
+2. You may not sell, sublicense or redistribute the application itself, or
+   present it as your own product.
+3. Artwork you analyse remains entirely yours. The application does not
+   transmit your files anywhere.
+4. Findings are automated suggestions about technical pixel patterns. They are
+   not a professional assessment of artistic quality.
+5. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND. IN NO EVENT
+   SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING
+   FROM THE USE OF THE SOFTWARE.
+
+Owner decision pending: the source code of the Free edition is visible in a
+public repository. The owner may choose an open-source licence (e.g. MIT) for
+it instead of this proprietary text.

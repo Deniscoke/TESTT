@@ -1,0 +1,21 @@
+PIXEL PROOFREADER PRO - END USER LICENSE (DRAFT FOR OWNER REVIEW, NOT LEGAL ADVICE)
+
+1. Licence. Your purchase grants one person a perpetual, non-exclusive,
+   non-transferable licence to use Pixel Proofreader Pro on any computers they
+   personally use, for personal and commercial work. Studios need one licence
+   per person who uses the software.
+2. Restrictions. You may not redistribute, resell, share download links for, or
+   publicly host the software or its files.
+3. Your artwork. Files you analyse and reports you export are yours. The
+   software runs offline and does not transmit your files.
+4. No DRM. The software does not phone home. Please respect the licence.
+5. Updates. Updates for the 1.x series are provided through the itch.io
+   download page at no extra cost, while available.
+6. Disclaimer. Findings are automated suggestions about technical pixel
+   patterns, not a judgement of artistic quality. THE SOFTWARE IS PROVIDED
+   "AS IS", WITHOUT WARRANTY OF ANY KIND. TO THE EXTENT PERMITTED BY LAW, THE
+   AUTHOR IS NOT LIABLE FOR ANY DAMAGES ARISING FROM ITS USE.
+7. Refunds follow the itch.io refund process and the seller's published policy.
+
+Owner to review: governing law, refund policy, contact address, and consumer
+rights in buyers' countries (e.g. EU digital-content rules).
