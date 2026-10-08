@@ -1,7 +1,7 @@
 name: Verify repository
 on:
   push:
-    branches: [main]
+    branches: [main, "claude/**"]
   pull_request:
   workflow_dispatch:
 permissions:
@@ -18,3 +18,34 @@ jobs:
           test -s README.md
           test -s docs/CLOUD_SESSION_BRIEF.md
           echo "Cloud Lab baseline verified"
+
+  pixel-proofreader:
+    # Pure-Lua checks only. Aseprite is never downloaded, built or run here.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install stock Lua 5.4 and zip (Ubuntu packages)
+        run: sudo apt-get update -q && sudo apt-get install -y -q lua5.4 zip
+      - name: Lua syntax check
+        shell: bash
+        run: |
+          set -euo pipefail
+          find src tests -name '*.lua' -print0 | sort -z | xargs -0 -n1 luac5.4 -p
+          echo "syntax OK"
+      - name: Unit tests (core detectors + fake-API glue tests)
+        run: lua5.4 tests/run.lua
+      - name: Deterministic packaging (build twice, compare)
+        shell: bash
+        run: |
+          set -euo pipefail
+          tools/package.sh "$RUNNER_TEMP/a"
+          tools/package.sh "$RUNNER_TEMP/b"
+          cmp "$RUNNER_TEMP"/a/*.aseprite-extension "$RUNNER_TEMP"/b/*.aseprite-extension
+          mkdir -p dist && cp "$RUNNER_TEMP"/a/* dist/
+          cat dist/*.sha256
+      - name: Upload temporary build artifact (not a release)
+        uses: actions/upload-artifact@v4
+        with:
+          name: pixel-proofreader-p0
+          path: dist/
+          retention-days: 14

@@ -1,0 +1,15 @@
+{
+  "name": "pixel-proofreader",
+  "displayName": "Pixel Proofreader (P0 prototype)",
+  "description": "Non-destructive checks for orphan pixels, doubled corners and partial alpha. Markers go on a separate layer.",
+  "version": "0.0.1-p0",
+  "author": { "name": "Deniscoke" },
+  "publisher": "deniscoke",
+  "license": "UNLICENSED",
+  "categories": [ "Scripts" ],
+  "contributes": {
+    "scripts": [
+      { "path": "./plugin.lua" }
+    ]
+  }
+}
