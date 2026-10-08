@@ -81,3 +81,7 @@ Options for the owner:
 - **M3:** Pro in its protected location, with Windows Edge end-to-end tests.
 - **M4:** listing materials, a release workflow that is **disabled by default** (`workflow_dispatch` only, a repository-variable kill switch, `BUTLER_API_KEY` stored only as a secret, no butler step runs until enabled), and the QA checklist.
 - **Estimated credits** for M2–M4 [A]: about $30–$45, within the $50 cap. The owner should check actual usage.
+
+## 7. Owner decisions (2026-10-08)
+- **Option A, split repos:** the Free edition and shared code stay in public `Deniscoke/TESTT`. Pro code lives in a **private repo that the owner creates and attaches to the session**. No Pro code is written until that repo exists.
+- **Launch price: $9** for Pro. Listing materials use $9, and $15 stays a later test.

@@ -78,3 +78,54 @@ jobs:
           name: pixel-proofreader-libresprite-diagnostic
           path: dist/libresprite/
           retention-days: 14
+
+  web-free:
+    # Free web edition: unit/regression tests, deterministic build, browser
+    # end-to-end test (installed Chrome, file://, network blocked).
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install stock Lua 5.4 (reference implementation) and zip
+        run: sudo apt-get update -q && sudo apt-get install -y -q lua5.4 zip
+      - name: Install dev tooling (playwright-core only, no browser download)
+        run: npm ci --no-audit --no-fund
+      - name: Unit, PNG and regression tests
+        run: node tests/web/run.mjs
+      - name: Build Free edition
+        run: node tools/build_web.mjs
+      - name: Browser end-to-end test (Chrome on Linux)
+        env:
+          PP_BROWSER_CHANNEL: chrome
+        run: node tests/web/e2e.mjs
+      - name: Upload Free web build (free edition, temporary artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: pixel-proofreader-free-web
+          path: |
+            dist/web/free/index.html
+            dist/web/free/*.zip
+          retention-days: 14
+
+  web-free-windows:
+    # Same browser test on a real Windows runner with Microsoft Edge.
+    needs: web-free
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install dev tooling (playwright-core only)
+        run: npm ci --no-audit --no-fund
+      - name: Download the Linux-built Free edition
+        uses: actions/download-artifact@v4
+        with:
+          name: pixel-proofreader-free-web
+          path: dist/web/free
+      - name: Browser end-to-end test (Microsoft Edge on Windows)
+        env:
+          PP_BROWSER_CHANNEL: msedge
+        run: node tests/web/e2e.mjs

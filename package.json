@@ -1,0 +1,15 @@
+{
+  "name": "pixel-proofreader",
+  "private": true,
+  "version": "0.9.0",
+  "description": "Pixel Proofreader build and test tooling (no runtime dependencies).",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "node tools/build_web.mjs",
+    "test": "node tests/web/run.mjs",
+    "e2e": "node tests/web/e2e.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "1.56.1"
+  }
+}

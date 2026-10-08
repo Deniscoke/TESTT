@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; base-uri 'none'; form-action 'none'">
+<meta name="description" content="Check pixel art for stray pixels, doubled corners and accidental transparency. Free, private, runs entirely in your browser.">
+<title>Pixel Proofreader Free</title>
+<style>{{STYLES}}</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <svg class="logo" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges">
+      <rect x="1" y="1" width="6" height="6" fill="var(--accent)"/>
+      <rect x="2" y="2" width="2" height="2" fill="var(--bg)"/>
+      <rect x="5" y="5" width="1" height="1" fill="#ff2bd6"/>
+    </svg>
+    <span class="name">Pixel Proofreader</span>
+    <span class="badge">Free</span>
+  </div>
+  <button type="button" class="chip" id="privacyBtn" aria-haspopup="dialog">
+    <span aria-hidden="true">🔒</span> Images stay on your device
+  </button>
+</header>
+
+<main id="app" class="empty">
+  <section class="dropzone" id="dropzone" aria-labelledby="dropTitle">
+    <div class="drop-inner">
+      <h1 id="dropTitle">Proofread your pixel art</h1>
+      <p class="lead">Find stray pixels, doubled corners and accidental semi-transparency in seconds.
+        Your PNG is analysed right here in your browser and is never uploaded.</p>
+      <div class="drop-actions">
+        <label class="btn primary" for="fileInput">Choose a PNG</label>
+        <button type="button" class="btn" id="sampleBtn">Try a sample sprite</button>
+      </div>
+      <p class="hint">…or drag and drop a PNG anywhere on this page.</p>
+      <input type="file" id="fileInput" accept="image/png,.png" hidden>
+    </div>
+  </section>
+
+  <section class="workspace" id="workspace" hidden>
+    <aside class="sidebar" aria-label="Results">
+      <div class="card file">
+        <div class="file-name" id="fileName">-</div>
+        <div class="file-meta" id="fileMeta"></div>
+      </div>
+      <div class="card summary" role="status" aria-live="polite" id="summary"></div>
+      <div class="card">
+        <h2>Checks</h2>
+        <ul class="rules" id="rules"></ul>
+        <label class="opt"><input type="checkbox" id="skipIsolated"> Ignore fully isolated pixels (e.g. stars)</label>
+      </div>
+      <div class="card pro" id="proCard">
+        <h2>Pixel Proofreader Pro</h2>
+        <p>For asset packs and production work. Pro is a separate offline app for Windows. It is <strong>not</strong> included in this Free edition.</p>
+        <ul class="pro-list">
+          <li>Batch-check whole folders of sprites</li>
+          <li>Line-quality and palette-consistency checks</li>
+          <li>Annotated PNG, CSV and HTML report export</li>
+          <li>Adjustable sensitivity, side-by-side view</li>
+        </ul>
+        <a class="btn primary block" id="proLink" href="#" target="_blank" rel="noopener">Get Pro</a>
+        <p class="fine" id="proNote"></p>
+      </div>
+    </aside>
+
+    <div class="stage">
+      <div class="toolbar" role="toolbar" aria-label="View controls">
+        <button type="button" class="btn icon" id="zoomOut" aria-label="Zoom out">−</button>
+        <span class="zoom" id="zoomLabel" aria-live="polite">100%</span>
+        <button type="button" class="btn icon" id="zoomIn" aria-label="Zoom in">+</button>
+        <button type="button" class="btn" id="fitBtn">Fit</button>
+        <button type="button" class="btn" id="oneBtn">1:1</button>
+        <label class="toggle"><input type="checkbox" id="overlayToggle" checked> Show issues</label>
+        <span class="spacer"></span>
+        <label class="btn" for="fileInput2">Open another</label>
+        <input type="file" id="fileInput2" accept="image/png,.png" hidden>
+      </div>
+      <div class="viewport">
+        <canvas id="canvas" aria-label="Sprite preview with issue overlay. Drag to pan, scroll to zoom."></canvas>
+      </div>
+      <div class="statusbar" id="statusbar">Hover over the image to inspect pixels. Drag to pan, scroll to zoom.</div>
+    </div>
+  </section>
+
+  <div class="error" id="error" role="alert" hidden></div>
+</main>
+
+<footer class="footer">
+  <span>Pixel Proofreader Free {{VERSION}}</span>
+  <span>Findings are suggestions about technical patterns, not judgements of artistic quality.</span>
+</footer>
+
+<dialog id="privacyDialog" aria-labelledby="privacyTitle">
+  <h2 id="privacyTitle">Privacy</h2>
+  <ul>
+    <li>Your images are read and analysed <strong>only in this browser tab</strong>. Nothing is uploaded.</li>
+    <li>No accounts, cookies, analytics, tracking or AI services.</li>
+    <li>The page's security policy blocks all network requests, so it cannot send your files anywhere.</li>
+    <li>Closing the tab discards everything.</li>
+  </ul>
+  <form method="dialog"><button class="btn primary">Close</button></form>
+</dialog>
+
+<script>{{SCRIPTS}}</script>
+</body>
+</html>
